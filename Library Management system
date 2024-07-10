@@ -1,0 +1,267 @@
+//Library Manegement Baneen Project 1st Sem
+#include<iostream>
+//#include<stdlib.h>
+#include<windows.h>
+#include<conio.h>
+#include<string.h>
+using namespace std;
+void Display_Menue();
+// struture
+struct classstudent
+{
+ int bookID;
+ char title[30];
+ char authorofbook[30];
+ int costofbook;
+ char st[20];
+ int id;
+};
+const int books = 5;
+int arr; // global variable
+classstudent classstudentobj[books]; // array of str
+
+// add book
+void Add_Book()
+{
+
+ if (arr < books)
+ {
+  int a;
+  cout << "\n\t\t How many books you want to enter: ";
+  cin >> a;
+  for (int i = 0; i < a; i++) {
+
+   cout << "\n\t\t\t---Enter the Details of Books---" << endl;
+   cout << "\n\t\tEnter a book id= ";
+   cin >> classstudentobj[arr].bookID;
+   cout << "\n\t\tEnter book title= ";
+   cin >> classstudentobj[arr].title;
+   cout << "\n\t\tEnter name of author= ";
+   cin >> classstudentobj[arr].authorofbook;
+   cout << "\n\t\tEnter the cost of book= ";
+   cin >> classstudentobj[arr].costofbook;
+   arr++;
+  }
+ }
+ else
+ {
+  cout << "\n\n\tNo more space in system for another" << endl;
+
+ }
+}
+
+//display book
+void Display_Books()
+{
+ cout << "\n\t\t\t---Detail of all books in liabrary---";
+ for (int i = 1; i <= arr; i++)
+ {
+  cout << "\n\t\t --------(" << i << ")--------";
+  cout << "\n\t\tBook ID=" << classstudentobj[i].bookID << endl;
+  cout << "\n\t\tBook Title is=" << classstudentobj[i].title << endl;
+  cout << "\n\t\tAuthor Name=" << classstudentobj[i].authorofbook << endl;
+  cout << "\n\t\tcost of book=" << classstudentobj[i].costofbook << endl;
+ }
+}
+
+//search book
+void Book_Author()
+{
+ char search_book[30];
+ cout << "\n\t\tEnter the name of Author= ";
+ cin >> search_book;
+ int i = 0;
+ while (i < arr)
+ {
+  if (strcmp(search_book, classstudentobj[i].authorofbook) == 0)
+  {
+   cout << endl;
+   cout << "\n\t\tBook ID=" << classstudentobj[i].bookID << endl;
+   cout << "\n\t\tBook Title is=" << classstudentobj[i].title << endl;
+   cout << "\n\t\tAuthor Name=" << classstudentobj[i].authorofbook << endl;
+   cout << "\n\t\tcost of book=" << classstudentobj[i].costofbook << endl;
+   i++;
+  }
+  else
+  {
+   cout << "\n\t\t Enter correct Name";
+   Book_Author();
+  }
+ }
+}
+//issue book
+void Issue_Book()
+{
+ char a;
+ do {
+  cout << "\n\t\t\t->Enter Details :-\n";
+  cout << "\n\t\tEnter Book Name : ";
+  cin >> classstudentobj[arr].title;
+  cout << "\n\t\tEnter Book's ID : ";
+  cin >> classstudentobj[arr].bookID;
+  cout << "\n\t\tEnter Student Name : ";
+  cin >> classstudentobj[arr].st;
+  cout << "\n\t\tEnter Student's ID : ";
+  cin >> classstudentobj[arr].id;
+  cout << "\n\n\t\tIssue Successfully.\n";
+  cout << "\n\n\tDo you want to issue more [y/n]: ";
+  cin >> a;
+ } while (a != 'n' && a != 'N');
+}
+// return book
+void Return_Book() {
+ char z;
+ do {
+  cout << "\n\t\t\t->Enter Details :-\n";
+  cout << "\n\t\tEnter Book Name : ";
+  cin >> classstudentobj[arr].title;
+  cout << "\n\t\tEnter Book's ID : ";
+  cin >> classstudentobj[arr].bookID;
+  cout << "\n\t\tEnter Student Name : ";
+  cin >> classstudentobj[arr].st;
+  cout << "\n\t\tEnter Student's ID : ";
+  cin >> classstudentobj[arr].id;
+  cout << "\n\n\t\t\tReturned Successfully.\n";
+  cout << "\n\t\tDo you want to return more [y/n]: ";
+  cin >> z;
+ } while (z != 'n' && z != 'N');
+
+}
+// student 
+void student() {
+ system("cls");
+ int k;
+ system("cls");
+ cout << "\n\t\t\t*---WELCOME STUDENT*---\n";
+ cout << "\n\t\t>>Please Choose One Option:\n";
+ cout << "\n\t\t1.View BookList"
+  << "\n\t\t2.Search for a Book"
+  << "\n\t\t3.Rertun book"
+  << " \n\n\t\t4.Go to main menu"
+  << "\n\n\t\t5.Close Application\n";
+ cout << "\n\t\tEnter your choice : ";
+ cin >> k;
+ switch (k) {
+ case 1:
+  system("cls");
+  Display_Books();
+  break;
+ case 2:
+  system("cls");
+  Book_Author();
+  break;
+ case 3:
+  system("cls");
+  Return_Book();
+  break;
+ case 4:
+  system("cls");
+  Display_Menue();
+  break;
+ case 5:
+  system("cls");
+  exit(0);
+  break;
+ default:
+  system("cls");
+  cout << "\n\t\tenter correct option";
+
+ }
+}
+
+//librarian
+void librarian()
+{
+
+ int choice;
+ char input;
+ do
+ {
+  system("cls");
+  cout << "\n\n\t\t*---Library Book Record System*--" << endl;
+  cout << "\n\t\tPress 1 to Enter a book record:" << endl;
+  cout << "\t\tPress 2 to Display all Records of books:" << endl;
+  cout << "\t\tPress 3 to Search book by author name:" << endl;
+  cout << "\t\tPress 4 to Issue book:" << endl;
+  cout << "\t\tPress 5 to Count total books in library:" << endl;
+  cout << "\t\tPress 6 to go to Main menue: " << endl;
+  cout << "\t\tPress 7 to Exist from the system:" << endl;
+  cout << "\t\tEnter the choice: ";
+  cin >> choice;
+
+  switch (choice)
+  {
+  case 1:
+   system("cls");
+   Add_Book();
+   break;
+  case 2:
+   system("cls");
+   Display_Books();
+   break;
+  case 3:
+   system("cls");
+   Book_Author();
+   break;
+  case 4:
+   system("cls");
+   Issue_Book();
+   break;
+  case 5:
+   system("cls");
+   cout << "\n\t\tTotal Number of books in library are:" << arr << endl;
+   break;
+  case 6:
+   system("cls");
+   Display_Menue();
+  case 7:
+   system("cls");
+   exit(0);
+  default:
+   system("cls");
+   cout << "\n\n\tinvalid choice please try again";
+  }
+  cout << "\n\n\tDo you want to continue,please press y or n: ";
+  cin >> input;
+
+ } while (input == 'y' || input == 'Y');
+}
+
+// main menu
+void Display_Menue() {
+
+ int c;
+ cout << "\n\t\t\t** LIBRARY MANAGEMENT SYSTEM **\n";
+ cout << "\n\t\t>>Please Choose Any Option To login \n";
+ cout << "\n\t\t1.Student"
+  << "\n\n\t\t2.Librarian"
+  << "\n\n\t\t3.Close Application\n";
+ cout << "\n\t\tEnter your choice : ";
+ cin >> c;
+ switch (c) {
+ case 1:
+  system("cls");
+  student();
+  break;
+ case 2:
+  system("cls");
+  librarian();
+  break;
+ case 3:
+  system("CLS");
+  cout << "\n\n\n\n\n\n\t\t\t******************************************";
+  cout << "\n\n\t\t\t\tLIBRARY MANAGEMENT SYSTEM \n\n\t\t\t\tMade by Sparkle,And,Team\n\n ";
+  cout << "\t\t\t******************************************";
+  Sleep(5000);
+  return;
+  exit(0);
+ }
+}
+
+int main() {
+ system("color 4F");
+ system("cls");
+ Display_Menue();
+ return 0;
+}
+
